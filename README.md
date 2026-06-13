@@ -54,4 +54,37 @@ A complete, production-ready organic food delivery platform focused on **Indian 
 
 ---
 
+---
+
+## 🚀 Quick Start
+
+1. Download all files
+2. Open `index.html` in browser
+3. Click 🌐 globe icon to switch to Tamil
+4. Shop organic products
+5. Add to cart & checkout
+
+---
+
+## 💳 Payment Methods
+
+- UPI (Google Pay, PhonePe, Paytm)
+- Credit/Debit Cards
+- Net Banking
+- Wallets
+- Cash on Delivery
+
+---
+
+## 📞 Contact
+
+- **Phone**: +91 917200558060 / +91 9994014301
+- **Email**: hello@umadebioorganic.com
+- **Website**: umadebioorganic.com
+- **Address**: 86/12, Seetharaman Street, Salem-636016
+
+---
+
+Made with 💚 for healthy Indian millets | Umade Bioorganic 2026
+
 ## 📁 File Structure
