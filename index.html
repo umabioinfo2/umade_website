@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umade Bioorganic - Organic Food & Groceries Delivery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/lang.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade Bioorganic</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active" data-lang="nav.home">Home</a>
+                <a href="#products" data-lang="nav.shop">Shop</a>
+                <a href="#categories" data-lang="nav.categories">Categories</a>
+                <a href="#about" data-lang="nav.about">About</a>
+                <a href="#contact" data-lang="nav.contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-current">EN</span>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search organic products..." id="searchInput">
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="user-menu">
+                    <div class="user-icon" id="userIcon" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                        <a href="pages/login.html?form=register"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        <a href="pages/admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="pages/driver-tracking.html"><i class="fas fa-map-marker-alt"></i> Track Order</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-seedling"></i>
+                <span>100% Organic & Fresh</span>
+            </div>
+            <h1><span>Farm to Table,</span><br><span>Delivered to Your Door</span></h1>
+            <p>Discover the freshest organic millets, traditional grains, and groceries sourced directly from local farms. Healthy living starts with what you eat.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    Shop Now
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    <i class="fas fa-play-circle"></i>
+                    Learn More
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Partner Farms</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2000+</span>
+                    <span class="stat-label">Organic Products</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">45min</span>
+                    <span class="stat-label">Fast Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Browse by Category</span>
+                <h2>Shop Our Organic Collection</h2>
+                <p>From organic millets to traditional grains, pulses, and pantry essentials - everything you need for healthy living.</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" data-category="millets">
+                    <div class="category-img">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Organic Millets</h3>
+                    <p>48 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="category-card" data-category="pulses">
+                    <div class="category-img">
+                        <i class="fas fa-bowl-food"></i>
+                    </div>
+                    <h3>Pulses</h3>
+                    <p>36 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="category-card" data-category="rice">
+                    <div class="category-img">
+                        <i class="fas fa-bowl-rice"></i>
+                    </div>
+                    <h3>Organic Rice</h3>
+                    <p>42 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="category-card" data-category="spices">
+                    <div class="category-img">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <h3>Spices</h3>
+                    <p>64 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="category-card" data-category="oils">
+                    <div class="category-img">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <h3>Cold-Pressed Oils</h3>
+                    <p>28 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="category-card" data-category="sweeteners">
+                    <div class="category-img">
+                        <i class="fas fa-jar"></i>
+                    </div>
+                    <h3>Natural Sweeteners</h3>
+                    <p>24 Products</p>
+                    <a href="#products" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Popular Products</span>
+                <h2>Fresh from the Farm</h2>
+                <p>Handpicked organic produce delivered fresh to your doorstep.</p>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be rendered by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>Umade Bioorganic</span>
+                    </div>
+                    <p>Bringing the freshest organic produce from local farms to your table. FSSAI certified organic products for healthy living.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919172005580">+91 917200558060</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919994014301">+91 9994014301</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:hello@umadebioorganic.com">hello@umadebioorganic.com</a></li>
+                        <li><i class="fas fa-globe"></i> <a href="https://umadebioorganic.com">umadebioorganic.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Umade Bioorganic. All rights reserved. Made with love for healthy living.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-basket"></i> Your Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items rendered by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <a href="pages/payment.html" class="btn btn-primary btn-full">
+                <i class="fas fa-credit-card"></i> Checkout
+            </a>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
