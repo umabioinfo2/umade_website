@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer & Earn - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/referral.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#products">Shop</a>
+                <a href="../index.html#categories">Categories</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-current">EN</span>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Referral Hero -->
+    <section class="referral-hero">
+        <div class="container">
+            <div class="referral-header">
+                <div class="referral-badge">
+                    <i class="fas fa-gift"></i>
+                    <span data-lang="referral.title">Refer & Earn</span>
+                </div>
+                <h1 data-lang="referral.subtitle">Share Umade with friends and earn rewards together</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Code -->
+    <section class="referral-code-section">
+        <div class="container">
+            <div class="code-card">
+                <div class="code-header">
+                    <h3 data-lang="referral.your_code">Your Referral Code</h3>
+                    <p>Share this code with friends and earn rewards</p>
+                </div>
+                <div class="code-display">
+                    <span class="code-text" id="referralCode">UMADE-RAHUL-2026</span>
+                    <button class="btn-copy" onclick="copyCode()">
+                        <i class="fas fa-copy"></i>
+                        <span data-lang="referral.copy">Copy</span>
+                    </button>
+                </div>
+                <div class="share-buttons">
+                    <span class="share-label" data-lang="referral.share">Share via</span>
+                    <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-lang="referral.whatsapp">WhatsApp</span>
+                    </button>
+                    <button class="share-btn sms" onclick="shareSMS()">
+                        <i class="fas fa-sms"></i>
+                        <span data-lang="referral.sms">SMS</span>
+                    </button>
+                    <button class="share-btn email" onclick="shareEmail()">
+                        <i class="fas fa-envelope"></i>
+                        <span data-lang="referral.email">Email</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-referral-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="referral.how_it_works">How It Works</span>
+                <h2>3 Simple Steps to Earn</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 data-lang="referral.step1">Share your unique referral code with friends</h3>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 data-lang="referral.step2">Friends get ₹100 off their first order</h3>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 data-lang="referral.step3">You earn ₹100 credit + 200 loyalty points</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Stats -->
+    <section class="referral-stats-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="referral.stats">Your Referral Stats</span>
+                <h2>Track Your Earnings</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalReferrals">12</span>
+                        <span class="stat-label" data-lang="referral.total_referrals">Total Referrals</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="successfulReferrals">8</span>
+                        <span class="stat-label" data-lang="referral.successful">Successful</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="pendingReferrals">4</span>
+                        <span class="stat-label" data-lang="referral.pending">Pending</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon earnings">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalEarnings">₹800</span>
+                        <span class="stat-label" data-lang="referral.earnings">Total Earnings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Friends List -->
+    <section class="friends-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="referral.friends_title">Friends You've Referred</span>
+                <h2>Your Referral Network</h2>
+            </div>
+            <div class="friends-table-wrapper">
+                <table class="friends-table">
+                    <thead>
+                        <tr>
+                            <th data-lang="referral.friend_name">Friend</th>
+                            <th data-lang="referral.order_value">Order Value</th>
+                            <th data-lang="referral.your_reward">Your Reward</th>
+                            <th data-lang="referral.referral_status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="friendsTable">
+                        <tr>
+                            <td>
+                                <div class="friend-info">
+                                    <div class="friend-avatar">PK</div>
+                                    <span>Priya Kumar</span>
+                                </div>
+                            </td>
+                            <td>₹1,250</td>
+                            <td class="reward">₹100 + 200 pts</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="friend-info">
+                                    <div class="friend-avatar">AS</div>
+                                    <span>Arjun Singh</span>
+                                </div>
+                            </td>
+                            <td>₹899</td>
+                            <td class="reward">₹100 + 200 pts</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="friend-info">
+                                    <div class="friend-avatar">NR</div>
+                                    <span>Neha Reddy</span>
+                                </div>
+                            </td>
+                            <td>₹2,450</td>
+                            <td class="reward">₹100 + 200 pts</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="friend-info">
+                                    <div class="friend-avatar">VM</div>
+                                    <span>Vikram Mehta</span>
+                                </div>
+                            </td>
+                            <td>-</td>
+                            <td class="reward">-</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="friend-info">
+                                    <div class="friend-avatar">SG</div>
+                                    <span>Sanya Gupta</span>
+                                </div>
+                            </td>
+                            <td>-</td>
+                            <td class="reward">-</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/referral.js"></script>
+</body>
+</html>
