@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<base target="_blank">
+</head>
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>Umade</span>
+            </a>
+            <span class="admin-badge">Admin</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-label">Main</span>
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#orders" class="nav-item" data-page="orders">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Orders</span>
+                    <span class="nav-badge">24</span>
+                </a>
+                <a href="#products" class="nav-item" data-page="products">
+                    <i class="fas fa-box-open"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#customers" class="nav-item" data-page="customers">
+                    <i class="fas fa-users"></i>
+                    <span>Customers</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-label">Analytics</span>
+                <a href="#sales" class="nav-item" data-page="sales">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Sales Report</span>
+                </a>
+                <a href="#delivery" class="nav-item" data-page="delivery">
+                    <i class="fas fa-truck"></i>
+                    <span>Delivery Tracking</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-label">Settings</span>
+                <a href="#settings" class="nav-item" data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="#logout" class="nav-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-name">Admin User</span>
+                    <span class="admin-role">Super Admin</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <h2 id="pageTitle">Dashboard Overview</h2>
+                <span class="topbar-date" id="currentDate"></span>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                <div class="topbar-actions">
+                    <button class="topbar-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <button class="topbar-btn">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Page -->
+        <div class="admin-page active" id="dashboard-page">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #E8F5E9; color: #2D7A3E;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Revenue</span>
+                        <span class="stat-value">₹8,45,320</span>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 12.5% vs last month
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FFF3E0; color: #FF8F00;">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Orders</span>
+                        <span class="stat-value">3,456</span>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 8.2% vs last month
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #E3F2FD; color: #2196F3;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">New Customers</span>
+                        <span class="stat-value">2,134</span>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> 15.3% vs last month
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FCE4EC; color: #E91E63;">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Products Sold</span>
+                        <span class="stat-value">12,567</span>
+                        <span class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i> 2.1% vs last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-card chart-large">
+                    <div class="chart-header">
+                        <h3>Sales Overview</h3>
+                        <div class="chart-filters">
+                            <button class="chart-filter active">Weekly</button>
+                            <button class="chart-filter">Monthly</button>
+                            <button class="chart-filter">Yearly</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card chart-small">
+                    <div class="chart-header">
+                        <h3>Order Status</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="orderStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders & Top Products -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-clock"></i> Recent Orders</h3>
+                        <a href="#orders" class="view-all" onclick="switchPage('orders')">View All</a>
+                    </div>
+                    <div class="orders-table-wrapper">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTable">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-trophy"></i> Top Products</h3>
+                        <a href="#products" class="view-all" onclick="switchPage('products')">View All</a>
+                    </div>
+                    <div class="top-products-list" id="topProductsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div class="admin-page" id="orders-page">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-shopping-bag"></i> All Orders</h3>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <select class="filter-select" id="orderStatusFilter">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="preparing">Preparing</option>
+                                <option value="out_for_delivery">Out for Delivery</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <input type="date" class="filter-date" id="orderDateFilter">
+                        </div>
+                        <button class="btn btn-primary" onclick="exportOrders()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="orders-table-wrapper">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="table-checkbox" id="selectAllOrders"></th>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allOrdersTable">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-pagination">
+                    <span class="pagination-info">Showing 1-10 of 124 orders</span>
+                    <div class="pagination-buttons">
+                        <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Page -->
+        <div class="admin-page" id="products-page">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-box-open"></i> Products Management</h3>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <select class="filter-select" id="productCategoryFilter">
+                                <option value="all">All Categories</option>
+                                <option value="millets">Millets</option>
+                                <option value="pulses">Pulses</option>
+                                <option value="rice">Rice</option>
+                                <option value="spices">Spices</option>
+                                <option value="oils">Oils</option>
+                                <option value="sweeteners">Sweeteners</option>
+                            </select>
+                            <input type="text" class="filter-search" placeholder="Search products..." id="productSearch">
+                        </div>
+                        <button class="btn btn-primary" onclick="openAddProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                </div>
+                <div class="products-grid-admin" id="productsGridAdmin">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Page -->
+        <div class="admin-page" id="customers-page">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-users"></i> Customers</h3>
+                    <div class="header-actions">
+                        <input type="text" class="filter-search" placeholder="Search customers..." id="customerSearch">
+                    </div>
+                </div>
+                <div class="customers-grid" id="customersGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Report Page -->
+        <div class="admin-page" id="sales-page">
+            <div class="charts-row">
+                <div class="chart-card chart-full">
+                    <div class="chart-header">
+                        <h3>Revenue Analytics</h3>
+                        <div class="chart-filters">
+                            <button class="chart-filter active">This Month</button>
+                            <button class="chart-filter">Last Month</button>
+                            <button class="chart-filter">This Year</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-bar"></i> Sales by Category</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar"></i> Daily Sales</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="dailyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Tracking Page -->
+        <div class="admin-page" id="delivery-page">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-truck"></i> Active Deliveries</h3>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <select class="filter-select">
+                                <option>All Drivers</option>
+                                <option>Michael J.</option>
+                                <option>Sarah K.</option>
+                                <option>David R.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="deliveries-grid" id="deliveriesGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="admin-page" id="settings-page">
+            <div class="settings-layout">
+                <div class="settings-sidebar">
+                    <a href="#" class="settings-tab active" data-tab="general">
+                        <i class="fas fa-cog"></i> General
+                    </a>
+                    <a href="#" class="settings-tab" data-tab="payments">
+                        <i class="fas fa-credit-card"></i> Payments
+                    </a>
+                    <a href="#" class="settings-tab" data-tab="delivery">
+                        <i class="fas fa-truck"></i> Delivery
+                    </a>
+                    <a href="#" class="settings-tab" data-tab="notifications">
+                        <i class="fas fa-bell"></i> Notifications
+                    </a>
+                    <a href="#" class="settings-tab" data-tab="security">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </a>
+                </div>
+                <div class="settings-content">
+                    <div class="settings-panel active" id="general-panel">
+                        <h3>General Settings</h3>
+                        <div class="form-group">
+                            <label>Store Name</label>
+                            <input type="text" value="Umade" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Store Email</label>
+                            <input type="email" value="hello@umade.com" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Store Phone</label>
+                            <input type="tel" value="+91 917200558060 / +91 9994014301" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Store Address</label>
+                            <textarea class="form-textarea">86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Currency</label>
+                            <select class="form-select">
+                                <option>INR (₹)</option>
+                                <option>USD ($)</option>
+                                <option>EUR (€)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <div class="settings-panel" id="payments-panel">
+                        <h3>Payment Settings</h3>
+                        <div class="form-group">
+                            <label>Stripe API Key</label>
+                            <input type="password" value="sk_test_..." class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Methods</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Credit/Debit Card
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> PayPal
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Apple Pay
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Google Pay
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Cash on Delivery
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <div class="settings-panel" id="delivery-panel">
+                        <h3>Delivery Settings</h3>
+                        <div class="form-group">
+                            <label>Delivery Radius (km)</label>
+                            <input type="number" value="10" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Free Delivery Threshold (₹)</label>
+                            <input type="number" value="499" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Standard Delivery Fee (₹)</label>
+                            <input type="number" value="49" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Express Delivery Fee (₹)</label>
+                            <input type="number" value="99" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Cash on Delivery Fee (₹)</label>
+                            <input type="number" value="50" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Delivery Zones (Pincodes)</label>
+                            <textarea class="form-textarea" rows="6">Bengaluru Central: 560001, 560002, 560003, 560004, 560005
+Bengaluru South: 560034, 560095, 560076, 560068, 560070
+Bengaluru East: 560037, 560048, 560066, 560067
+Bengaluru North: 560024, 560032, 560045, 560064
+Chennai: 600001, 600020, 600040, 600087
+Hyderabad: 500001, 500034, 500081
+Mumbai: 400001, 400050, 400051, 400052
+Delhi: 110001, 110048, 110017, 110092</textarea>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <div class="settings-panel" id="notifications-panel">
+                        <h3>Notification Settings</h3>
+                        <div class="form-group">
+                            <label>Email Notifications</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> New Order
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Order Status Update
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Low Stock Alert
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Daily Summary
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <div class="settings-panel" id="security-panel">
+                        <h3>Security Settings</h3>
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Two-Factor Authentication</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="2faToggle">
+                                <label for="2faToggle"></label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Update Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div class="admin-modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="close-modal" onclick="closeAddProductModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" class="form-input" placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-select">
+                            <option>Fruits</option>
+                            <option>Vegetables</option>
+                            <option>Dairy</option>
+                            <option>Bakery</option>
+                            <option>Beverages</option>
+                            <option>Pantry</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" class="form-input" placeholder="0.00" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Old Price (₹)</label>
+                        <input type="number" class="form-input" placeholder="0.00" step="0.01">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-textarea" placeholder="Product description..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Stock Quantity</label>
+                        <input type="number" class="form-input" value="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Badge</label>
+                        <select class="form-select">
+                            <option>None</option>
+                            <option>Organic</option>
+                            <option>Sale</option>
+                            <option>Best Seller</option>
+                            <option>New</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeAddProductModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveProduct()">Add Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div class="admin-modal" id="orderDetailModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Order Details <span id="detailOrderId">#UM-2026-78432</span></h3>
+                <button class="close-modal" onclick="closeOrderDetailModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="orderDetailBody">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
