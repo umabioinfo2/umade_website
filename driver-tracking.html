@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/driver-tracking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#products">Shop</a>
+                <a href="../index.html#categories">Categories</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-current">EN</span>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tracking Hero -->
+    <section class="tracking-hero">
+        <div class="container">
+            <div class="tracking-header">
+                <div class="tracking-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span data-lang="tracking.live_tracking">Live Order Tracking</span>
+                </div>
+                <h1 data-lang="tracking.title">Your Order is On the Way</h1>
+                <p data-lang="tracking.subtitle">Track your organic groceries in real-time from our farm to your doorstep.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Info Cards -->
+    <section class="order-info-section">
+        <div class="container">
+            <div class="order-info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label" data-lang="tracking.order_number">Order Number</span>
+                        <span class="info-value" id="orderNumber">#UM-IND-2026-78432</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label" data-lang="tracking.order_date">Order Date</span>
+                        <span class="info-value" id="orderDate">8 June 2026</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label" data-lang="tracking.items">Items</span>
+                        <span class="info-value" id="orderItems">8 items</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label" data-lang="tracking.total">Total</span>
+                        <span class="info-value" id="orderTotal">₹1,038</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Tracking Section -->
+    <section class="tracking-main">
+        <div class="container">
+            <div class="tracking-layout">
+                <!-- Left: Map & Driver -->
+                <div class="tracking-left">
+                    <!-- Live Map -->
+                    <div class="map-container">
+                        <div class="map-header">
+                            <h3><i class="fas fa-map"></i> <span data-lang="tracking.live">Live</span> Location</h3>
+                            <div class="map-status">
+                                <span class="live-dot"></span>
+                                <span data-lang="tracking.live">Live</span>
+                            </div>
+                        </div>
+                        <div class="map-area" id="mapArea">
+                            <!-- Simulated Map -->
+                            <div class="map-background">
+                                <div class="map-roads">
+                                    <div class="road road-h road-1"></div>
+                                    <div class="road road-h road-2"></div>
+                                    <div class="road road-v road-3"></div>
+                                    <div class="road road-v road-4"></div>
+                                    <div class="road road-d road-5"></div>
+                                </div>
+                                <div class="map-landmarks">
+                                    <div class="landmark store">
+                                        <i class="fas fa-store"></i>
+                                        <span>Umade Store</span>
+                                    </div>
+                                    <div class="landmark customer">
+                                        <i class="fas fa-home"></i>
+                                        <span>Your Home</span>
+                                    </div>
+                                    <div class="landmark park">
+                                        <i class="fas fa-tree"></i>
+                                        <span>Green Park</span>
+                                    </div>
+                                </div>
+                                <div class="driver-marker" id="driverMarker">
+                                    <div class="driver-avatar">
+                                        <i class="fas fa-motorcycle"></i>
+                                    </div>
+                                    <div class="driver-pulse"></div>
+                                </div>
+                                <div class="route-line" id="routeLine"></div>
+                            </div>
+                        </div>
+                        <div class="map-footer">
+                            <div class="map-stat">
+                                <i class="fas fa-route"></i>
+                                <span id="distanceRemaining">2.4 km <span data-lang="tracking.distance">away</span></span>
+                            </div>
+                            <div class="map-stat">
+                                <i class="fas fa-clock"></i>
+                                <span id="timeRemaining">12 <span data-lang="tracking.time">min</span></span>
+                            </div>
+                            <div class="map-stat">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span id="driverSpeed">24 <span data-lang="tracking.speed">km/h</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Driver Info -->
+                    <div class="driver-card">
+                        <div class="driver-profile">
+                            <div class="driver-photo">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="driver-details">
+                                <h4 id="driverName">Ramesh Kumar</h4>
+                                <div class="driver-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span id="driverRating">4.9</span>
+                                    <span class="rating-count">(342 deliveries)</span>
+                                </div>
+                                <div class="driver-vehicle">
+                                    <i class="fas fa-bicycle"></i>
+                                    <span id="driverVehicle">Electric Bike - Bengaluru Express</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="driver-actions">
+                            <button class="btn-driver btn-call" onclick="callDriver()">
+                                <i class="fas fa-phone"></i> <span data-lang="tracking.call">Call</span>
+                            </button>
+                            <button class="btn-driver btn-message" onclick="messageDriver()">
+                                <i class="fas fa-comment"></i> <span data-lang="tracking.message">Message</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Timeline & Order Details -->
+                <div class="tracking-right">
+                    <!-- Delivery Timeline -->
+                    <div class="timeline-card">
+                        <h3><i class="fas fa-list-check"></i> <span data-lang="tracking.progress">Delivery Progress</span></h3>
+                        <div class="timeline" id="deliveryTimeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-dot">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-lang="tracking.placed">Order Placed</h4>
+                                    <p>Your order has been confirmed</p>
+                                    <span class="timeline-time">6:15 PM</span>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-dot">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-lang="tracking.preparing">Preparing</h4>
+                                    <p>Fresh items are being packed</p>
+                                    <span class="timeline-time">6:22 PM</span>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-dot">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-lang="tracking.out_delivery">Out for Delivery</h4>
+                                    <p>Driver picked up your order</p>
+                                    <span class="timeline-time">6:38 PM</span>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-lang="tracking.on_way">On the Way</h4>
+                                    <p>Driver is approaching your location</p>
+                                    <span class="timeline-time"><span data-lang="tracking.arriving">Arriving in</span> 12 <span data-lang="tracking.time">min</span></span>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4 data-lang="tracking.delivered">Delivered</h4>
+                                    <p>Enjoy your organic groceries!</p>
+                                    <span class="timeline-time"><span data-lang="tracking.estimated">Estimated</span> 6:50 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items-card">
+                        <h3><i class="fas fa-shopping-bag"></i> <span data-lang="tracking.order_items">Order Items</span></h3>
+                        <div class="order-items-list" id="orderItemsList">
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🥑</span>
+                                    <div>
+                                        <span class="item-name">Avocado Hass</span>
+                                        <span class="item-qty">x2</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹178</span>
+                            </div>
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🥬</span>
+                                    <div>
+                                        <span class="item-name">Organic Spinach</span>
+                                        <span class="item-qty">x1</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹39</span>
+                            </div>
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🥚</span>
+                                    <div>
+                                        <span class="item-name">Free-Range Eggs</span>
+                                        <span class="item-qty">x1</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹149</span>
+                            </div>
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🍞</span>
+                                    <div>
+                                        <span class="item-name">Artisan Sourdough</span>
+                                        <span class="item-qty">x1</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹129</span>
+                            </div>
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🥛</span>
+                                    <div>
+                                        <span class="item-name">Organic Milk</span>
+                                        <span class="item-qty">x2</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹144</span>
+                            </div>
+                            <div class="order-item-row">
+                                <div class="item-info">
+                                    <span class="item-emoji">🍎</span>
+                                    <div>
+                                        <span class="item-name">Organic Red Apples</span>
+                                        <span class="item-qty">x3</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">₹447</span>
+                            </div>
+                        </div>
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span>₹1,086</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Delivery Fee</span>
+                                <span class="free">FREE</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Discount</span>
+                                <span class="discount">-₹48</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span>₹1,038</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Driver Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <button class="close-contact" id="closeContact"><i class="fas fa-times"></i></button>
+            <div class="contact-header">
+                <div class="contact-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Ramesh Kumar</h3>
+                <p>Your Delivery Driver</p>
+            </div>
+            <div class="contact-options">
+                <button class="contact-option" onclick="simulateCall()">
+                    <i class="fas fa-phone"></i>
+                    <span>Call Driver</span>
+                </button>
+                <button class="contact-option" onclick="openChat()">
+                    <i class="fas fa-comment"></i>
+                    <span>Send Message</span>
+                </button>
+            </div>
+            <div class="chat-area" id="chatArea">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message driver-msg">
+                        <p>Hi! I'm Michael, your delivery driver. I'm on my way with your organic groceries! 🌿</p>
+                        <span class="msg-time">Just now</span>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type a message..." id="chatInput">
+                    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Message sent!</span>
+    </div>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/driver-tracking.js"></script>
+</body>
+</html>
