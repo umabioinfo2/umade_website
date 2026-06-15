@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/payment.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#products">Shop</a>
+                <a href="../index.html#categories">Categories</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-current">EN</span>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Hero -->
+    <section class="checkout-hero">
+        <div class="container">
+            <div class="checkout-header">
+                <div class="checkout-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Checkout</span>
+                </div>
+                <h1>Complete Your <span class="highlight">Order</span></h1>
+                <p>Fast, secure payment with Stripe. Your organic groceries are almost on their way!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Main -->
+    <section class="checkout-main">
+        <div class="container">
+            <div class="checkout-layout">
+                <!-- Left: Payment Form -->
+                <div class="checkout-left">
+                    <!-- Pincode Checker -->
+                    <div class="checkout-section">
+                        <div class="section-header">
+                            <div class="section-number">0</div>
+                            <h3>Delivery Availability</h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="pincode-checker">
+                                <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-light);">Enter your pincode to check delivery availability and estimated time</p>
+                                <div class="pincode-input-wrapper">
+                                    <input type="text" class="pincode-input" id="pincodeInput" placeholder="560095" maxlength="6">
+                                    <button class="pincode-check-btn" onclick="checkPincode()">Check</button>
+                                </div>
+                                <div class="pincode-status" id="pincodeStatus"></div>
+                                <div class="delivery-zones" id="deliveryZones" style="display:none; margin-top: 16px;">
+                                    <div class="zone-info">
+                                        <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+                                        <span id="zoneName">Koramangala Zone</span>
+                                        <span class="zone-badge" id="zoneBadge" style="background: var(--primary-lighter); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">Express Available</span>
+                                    </div>
+                                    <div class="zone-time" style="margin-top: 8px; font-size: 13px; color: var(--text-light);">
+                                        <i class="fas fa-clock"></i> Estimated delivery: <strong id="zoneTime">45-60 minutes</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Address -->
+                    <div class="checkout-section">
+                        <div class="section-header">
+                            <div class="section-number">1</div>
+                            <h3>Delivery Address</h3>
+                        </div>
+                        <div class="section-body">
+                            <button class="btn-add-address" onclick="toggleNewAddress()">
+                                <i class="fas fa-plus"></i> Add New Address
+                            </button>
+                            <div class="new-address-form" id="newAddressForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" class="form-input" placeholder="Enter full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="tel" class="form-input" placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Street Address</label>
+                                    <input type="text" class="form-input" placeholder="Enter street address">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-input" placeholder="City">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" class="form-input" placeholder="State">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ZIP Code</label>
+                                        <input type="text" class="form-input" placeholder="ZIP">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address Label</label>
+                                    <div class="address-labels">
+                                        <button class="label-btn active">Home</button>
+                                        <button class="label-btn">Office</button>
+                                        <button class="label-btn">Other</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" onclick="saveNewAddress()">Save Address</button>
+                            </div>
+                        </div>
+                    </div><!-- Delivery Time -->
+                    <div class="checkout-section">
+                        <div class="section-header">
+                            <div class="section-number">2</div>
+                            <h3>Delivery Time</h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="delivery-options">
+                                <div class="delivery-option selected">
+                                    <div class="option-radio">
+                                        <input type="radio" name="delivery" checked>
+                                    </div>
+                                    <div class="option-info">
+                                        <div class="option-title">
+                                            <i class="fas fa-bolt"></i>
+                                            Express Delivery (2-4 Hours)
+                                        </div>
+                                        <p class="option-desc">30-45 minutes • Priority handling</p>
+                                    </div>
+                                    <div class="option-price">₹7.99</div>
+                                </div>
+                                <div class="delivery-option">
+                                    <div class="option-radio">
+                                        <input type="radio" name="delivery">
+                                    </div>
+                                    <div class="option-info">
+                                        <div class="option-title">
+                                            <i class="fas fa-clock"></i>
+                                            Standard Delivery (Same Day)
+                                        </div>
+                                        <p class="option-desc">1-2 hours • Regular handling</p>
+                                    </div>
+                                    <div class="option-price free">FREE</div>
+                                </div>
+                                <div class="delivery-option">
+                                    <div class="option-radio">
+                                        <input type="radio" name="delivery">
+                                    </div>
+                                    <div class="option-info">
+                                        <div class="option-title">
+                                            <i class="fas fa-calendar"></i>
+                                            Scheduled Delivery (Choose Slot)
+                                        </div>
+                                        <p class="option-desc">Choose your preferred time slot</p>
+                                    </div>
+                                    <div class="option-price free">FREE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="checkout-section">
+                        <div class="section-header">
+                            <div class="section-number">3</div>
+                            <h3>Payment Method</h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="payment-methods">
+                                <div class="payment-method selected" data-method="upi">
+                                    <div class="method-radio">
+                                        <input type="radio" name="payment" checked>
+                                    </div>
+                                    <div class="method-icon" style="background:#E8F5E9;color:#2D7A3E;">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <div class="method-title">UPI / QR Code</div>
+                                        <p class="method-desc">Google Pay, PhonePe, Paytm, BHIM</p>
+                                    </div>
+                                    <div class="method-badges">
+                                        <span style="font-size:11px;font-weight:700;color:#2D7A3E;">UPI</span>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="card">
+                                    <div class="method-radio">
+                                        <input type="radio" name="payment">
+                                    </div>
+                                    <div class="method-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <div class="method-title">Credit / Debit Card</div>
+                                        <p class="method-desc">Visa, Mastercard, RuPay, Amex</p>
+                                    </div>
+                                    <div class="method-badges">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        <span style="font-size:10px;font-weight:700;color:#FF6F00;">RuPay</span>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="netbanking">
+                                    <div class="method-radio">
+                                        <input type="radio" name="payment">
+                                    </div>
+                                    <div class="method-icon" style="background:#E3F2FD;color:#1565C0;">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <div class="method-title">Net Banking</div>
+                                        <p class="method-desc">SBI, HDFC, ICICI, Axis & more</p>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="wallet">
+                                    <div class="method-radio">
+                                        <input type="radio" name="payment">
+                                    </div>
+                                    <div class="method-icon" style="background:#FFF3E0;color:#E65100;">
+                                        <i class="fas fa-wallet"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <div class="method-title">Wallets</div>
+                                        <p class="method-desc">Paytm, PhonePe, Amazon Pay</p>
+                                    </div>
+                                </div>
+                                <div class="payment-method" data-method="cod">
+                                    <div class="method-radio">
+                                        <input type="radio" name="payment">
+                                    </div>
+                                    <div class="method-icon" style="background:#FFF8E1;color:#FF8F00;">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <div class="method-title">Cash on Delivery</div>
+                                        <p class="method-desc">Pay ₹50 extra | Pay when you receive</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UPI Payment Form -->
+                            <div class="upi-form" id="upiForm">
+                                <div class="upi-header">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Secured by Razorpay</span>
+                                </div>
+                                <div class="upi-options">
+                                    <div class="upi-app" onclick="selectUpiApp(this)">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/120px-Google_Pay_Logo.svg.png" alt="GPay" onerror="this.style.display='none'">
+                                        <span>Google Pay</span>
+                                    </div>
+                                    <div class="upi-app" onclick="selectUpiApp(this)">
+                                        <div style="width:40px;height:40px;background:#5F259F;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;">PP</div>
+                                        <span>PhonePe</span>
+                                    </div>
+                                    <div class="upi-app" onclick="selectUpiApp(this)">
+                                        <div style="width:40px;height:40px;background:#00B9F1;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;">PT</div>
+                                        <span>Paytm</span>
+                                    </div>
+                                    <div class="upi-app" onclick="selectUpiApp(this)">
+                                        <div style="width:40px;height:40px;background:#FF6F00;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;">BH</div>
+                                        <span>BHIM</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>UPI ID</label>
+                                    <div class="upi-input-wrapper">
+                                        <input type="text" class="form-input" id="upiId" placeholder="yourname@upi">
+                                        <span class="upi-hint">@okaxis, @okhdfcbank, @okicici, @oksbi</span>
+                                    </div>
+                                </div>
+                                <div class="upi-security">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Your UPI PIN is never stored. Secured by NPCI.</span>
+                                </div>
+                            </div>
+
+                            <!-- Card Payment Form (hidden by default) -->
+                            <div class="stripe-form" id="stripeForm" style="display:none;">
+                                <div class="stripe-header">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Card Payment</span>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Cardholder Name</label>
+                                        <input type="text" class="form-input" id="cardholderName" placeholder="Name on card">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Card Number</label>
+                                    <div class="card-input-wrapper">
+                                        <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                                        <div class="card-icons">
+                                            <i class="fab fa-cc-visa" id="visaIcon"></i>
+                                            <i class="fab fa-cc-mastercard" id="mastercardIcon"></i>
+                                            <span style="font-size:20px;font-weight:700;color:#FF6F00;">R</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Expiry Date</label>
+                                        <input type="text" class="form-input" id="expiryDate" placeholder="MM / YY" maxlength="7">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CVV</label>
+                                        <div class="cvv-wrapper">
+                                            <input type="text" class="form-input" id="cvv" placeholder="123" maxlength="4">
+                                            <i class="fas fa-question-circle" title="3 digits on back of card"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="stripe-security">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Your payment is secured with 256-bit SSL encryption</span>
+                                </div>
+                            </div>
+
+                            <!-- Net Banking Form (hidden) -->
+                            <div class="netbanking-form" id="netbankingForm" style="display:none;">
+                                <div class="netbanking-header">
+                                    <i class="fas fa-university"></i>
+                                    <span>Select Your Bank</span>
+                                </div>
+                                <div class="bank-grid">
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#1565C0;color:white;">SBI</div>
+                                        <span>State Bank</span>
+                                    </div>
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#004C8F;color:white;">HDFC</div>
+                                        <span>HDFC Bank</span>
+                                    </div>
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#F37021;color:white;">ICICI</div>
+                                        <span>ICICI Bank</span>
+                                    </div>
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#AE285D;color:white;">Axis</div>
+                                        <span>Axis Bank</span>
+                                    </div>
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#7B1FA2;color:white;">Kotak</div>
+                                        <span>Kotak</span>
+                                    </div>
+                                    <div class="bank-option" onclick="selectBank(this)">
+                                        <div class="bank-logo" style="background:#E31837;color:white;">PNB</div>
+                                        <span>Punjab National</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Other Banks</label>
+                                    <select class="form-select">
+                                        <option>Select Bank</option>
+                                        <option>Bank of Baroda</option>
+                                        <option>Canara Bank</option>
+                                        <option>Union Bank</option>
+                                        <option>Indian Bank</option>
+                                        <option>Central Bank</option>
+                                        <option>Bank of India</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Wallet Form (hidden) -->
+                            <div class="wallet-form" id="walletForm" style="display:none;">
+                                <div class="wallet-header">
+                                    <i class="fas fa-wallet"></i>
+                                    <span>Select Wallet</span>
+                                </div>
+                                <div class="wallet-options">
+                                    <div class="wallet-option selected" onclick="selectWallet(this)">
+                                        <div class="wallet-logo" style="background:#00B9F1;color:white;">Paytm</div>
+                                        <span>Paytm Wallet</span>
+                                        <span class="wallet-balance">Balance: ₹245</span>
+                                    </div>
+                                    <div class="wallet-option" onclick="selectWallet(this)">
+                                        <div class="wallet-logo" style="background:#5F259F;color:white;">PhonePe</div>
+                                        <span>PhonePe Wallet</span>
+                                    </div>
+                                    <div class="wallet-option" onclick="selectWallet(this)">
+                                        <div class="wallet-logo" style="background:#FF9900;color:white;">Amazon</div>
+                                        <span>Amazon Pay</span>
+                                    </div>
+                                    <div class="wallet-option" onclick="selectWallet(this)">
+                                        <div class="wallet-logo" style="background:#1A73E8;color:white;">Google</div>
+                                        <span>Google Pay</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button class="btn-place-order" id="placeOrderBtn" onclick="processPayment()">
+                        <div class="btn-content">
+                            <span class="btn-text">Place Order</span>
+                            <span class="btn-price">₹4,319</span>
+                        </div>
+                        <div class="btn-loading" style="display:none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Processing...</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Right: Order Summary -->
+                <div class="checkout-right">
+                    <div class="order-summary-card">
+                        <h3><i class="fas fa-shopping-bag"></i> Order Summary</h3>
+
+                        <div class="summary-items" id="summaryItems">
+                            <div class="summary-item">
+                                <div class="item-image">🌾</div>
+                                <div class="item-details">
+                                    <span class="item-name">Finger Millet (Ragi) 500g</span>
+                                    <span class="item-qty">x2</span>
+                                </div>
+                                <span class="item-price">₹158</span>
+                            </div>
+                            <div class="summary-item">
+                                <div class="item-image">🌾</div>
+                                <div class="item-details">
+                                    <span class="item-name">Foxtail Millet 500g</span>
+                                    <span class="item-qty">x1</span>
+                                </div>
+                                <span class="item-price">₹89</span>
+                            </div>
+                            <div class="summary-item">
+                                <div class="item-image">🫘</div>
+                                <div class="item-details">
+                                    <span class="item-name">Toor Dal (Arhar) 1kg</span>
+                                    <span class="item-qty">x1</span>
+                                </div>
+                                <span class="item-price">₹149</span>
+                            </div>
+                            <div class="summary-item">
+                                <div class="item-image">🌶️</div>
+                                <div class="item-details">
+                                    <span class="item-name">Turmeric Powder (Haldi) 250g</span>
+                                    <span class="item-qty">x2</span>
+                                </div>
+                                <span class="item-price">₹158</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-coupon">
+                            <div class="coupon-input">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" placeholder="Enter coupon code" id="couponInput">
+                                <button onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <div class="coupon-message" id="couponMessage"></div>
+                        </div>
+
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span>Subtotal (MRP)</span>
+                                <span id="subtotalAmount">₹554</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Delivery Fee</span>
+                                <span class="free" id="deliveryFee">₹0.00</span>
+                            </div>
+                            <div class="total-row gst-breakdown">
+                                <span>CGST (2.5%)</span>
+                                <span id="cgstAmount">₹14</span>
+                            </div>
+                            <div class="total-row gst-breakdown">
+                                <span>SGST (2.5%)</span>
+                                <span id="sgstAmount">₹14</span>
+                            </div>
+                            <div class="total-row">
+                                <span>GST Total (5%)</span>
+                                <span id="gstTotal">₹28</span>
+                            </div>
+                            <div class="total-row discount" id="discountRow" style="display:none;">
+                                <span>Discount</span>
+                                <span id="discountAmount">-₹0.00</span>
+                            </div>
+                            <div class="total-row grand">
+                                <span>Grand Total</span>
+                                <span id="grandTotal">₹582</span>
+                            </div>
+                            <div class="gst-included" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); font-size: 12px; color: var(--text-light); text-align: center;">
+                                <i class="fas fa-receipt"></i> Inclusive of all taxes. FSSAI Certified.
+                            </div>
+                        </div>
+
+                        <div class="summary-guarantees">
+                            <div class="guarantee">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Secure Payment</span>
+                            </div>
+                            <div class="guarantee">
+                                <i class="fas fa-undo"></i>
+                                <span>30-Day Returns</span>
+                            </div>
+                            <div class="guarantee">
+                                <i class="fas fa-leaf"></i>
+                                <span>100% Organic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Success Modal -->
+    <div class="payment-modal" id="paymentSuccessModal">
+        <div class="modal-content">
+            <div class="success-animation">
+                <div class="success-circle">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="success-pulse"></div>
+            </div>
+            <h2>Payment Successful!</h2>
+            <p>Your order has been placed successfully. Your organic groceries are being prepared for delivery.</p>
+            <div class="order-confirmation">
+                <div class="confirm-row">
+                    <span>Order Number</span>
+                    <strong>#UM-2026-78432</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Estimated Delivery</span>
+                    <strong>6:50 PM (30 min)</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Total Paid</span>
+                    <strong id="successTotal">₹4,319</strong>
+                </div>
+            </div>
+            <div class="success-actions">
+                <a href="driver-tracking.html" class="btn btn-primary">
+                    <i class="fas fa-map-marker-alt"></i> Track Order
+                </a>
+                <a href="../index.html" class="btn btn-outline">
+                    <i class="fas fa-shopping-bag"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Processing Overlay -->
+    <div class="processing-overlay" id="processingOverlay">
+        <div class="processing-content">
+            <div class="processing-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <h3>Processing Payment</h3>
+            <p>Please don't close this window...</p>
+            <div class="processing-steps">
+                <div class="p-step active" id="step1">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Verifying card...</span>
+                </div>
+                <div class="p-step" id="step2">
+                    <i class="fas fa-circle"></i>
+                    <span>Processing payment...</span>
+                </div>
+                <div class="p-step" id="step3">
+                    <i class="fas fa-circle"></i>
+                    <span>Confirming order...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/lang.js"></script>
+    <script src="../js/payment.js"></script>
+</body>
+</html>
