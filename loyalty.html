@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty Rewards - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loyalty.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#products">Shop</a>
+                <a href="../index.html#categories">Categories</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-current">EN</span>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loyalty Hero -->
+    <section class="loyalty-hero">
+        <div class="container">
+            <div class="loyalty-header">
+                <div class="loyalty-badge">
+                    <i class="fas fa-crown"></i>
+                    <span data-lang="loyalty.title">Umade Rewards</span>
+                </div>
+                <h1 data-lang="loyalty.subtitle">Earn points on every purchase and redeem for discounts</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Points Dashboard -->
+    <section class="points-dashboard">
+        <div class="container">
+            <div class="points-cards">
+                <div class="points-card balance">
+                    <div class="points-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label" data-lang="loyalty.points_balance">Points Balance</span>
+                        <span class="points-value" id="pointsBalance">2,450</span>
+                    </div>
+                </div>
+                <div class="points-card earned">
+                    <div class="points-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label" data-lang="loyalty.points_earned">Points Earned</span>
+                        <span class="points-value" id="pointsEarned">3,200</span>
+                    </div>
+                </div>
+                <div class="points-card redeemed">
+                    <div class="points-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label" data-lang="loyalty.points_redeemed">Points Redeemed</span>
+                        <span class="points-value" id="pointsRedeemed">750</span>
+                    </div>
+                </div>
+                <div class="points-card tier">
+                    <div class="points-icon gold">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label" data-lang="loyalty.tier">Membership Tier</span>
+                        <span class="points-value tier-gold" data-lang="loyalty.gold">Gold</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Earn -->
+    <section class="earn-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="loyalty.how_to_earn">How to Earn Points</span>
+                <h2 data-lang="loyalty.earn_rate">Earn 1 point per ₹10 spent</h2>
+                <p data-lang="loyalty.redeem_rate">100 points = ₹50 discount</p>
+            </div>
+            <div class="earn-grid">
+                <div class="earn-card">
+                    <div class="earn-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 data-lang="loyalty.purchase_points">Purchase Points</h3>
+                    <p data-lang="loyalty.purchase_desc">Earn 1 point for every ₹10 spent</p>
+                    <div class="earn-points">+1 point</div>
+                </div>
+                <div class="earn-card">
+                    <div class="earn-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 data-lang="loyalty.review_points">Review Points</h3>
+                    <p data-lang="loyalty.review_desc">Earn 50 points for each product review</p>
+                    <div class="earn-points">+50 points</div>
+                </div>
+                <div class="earn-card">
+                    <div class="earn-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 data-lang="loyalty.refer_points">Referral Points</h3>
+                    <p data-lang="loyalty.refer_desc">Earn 200 points for each successful referral</p>
+                    <div class="earn-points">+200 points</div>
+                </div>
+                <div class="earn-card">
+                    <div class="earn-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 data-lang="loyalty.social_points">Social Points</h3>
+                    <p data-lang="loyalty.social_desc">Earn 25 points for sharing on social media</p>
+                    <div class="earn-points">+25 points</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redeem Points -->
+    <section class="redeem-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="loyalty.redeem_title">Redeem Your Points</span>
+                <h2>Turn Points into Savings</h2>
+            </div>
+            <div class="redeem-grid">
+                <div class="redeem-card" onclick="redeemPoints(100)">
+                    <div class="redeem-points">100</div>
+                    <div class="redeem-value" data-lang="loyalty.redeem_100">₹50 Off</div>
+                    <button class="btn-redeem">Redeem</button>
+                </div>
+                <div class="redeem-card popular" onclick="redeemPoints(200)">
+                    <div class="popular-badge">Popular</div>
+                    <div class="redeem-points">200</div>
+                    <div class="redeem-value" data-lang="loyalty.redeem_200">₹125 Off</div>
+                    <button class="btn-redeem">Redeem</button>
+                </div>
+                <div class="redeem-card" onclick="redeemPoints(500)">
+                    <div class="redeem-points">500</div>
+                    <div class="redeem-value" data-lang="loyalty.redeem_500">₹350 Off</div>
+                    <button class="btn-redeem">Redeem</button>
+                </div>
+                <div class="redeem-card best" onclick="redeemPoints(1000)">
+                    <div class="best-badge">Best Value</div>
+                    <div class="redeem-points">1000</div>
+                    <div class="redeem-value" data-lang="loyalty.redeem_1000">₹800 Off</div>
+                    <button class="btn-redeem">Redeem</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Points History -->
+    <section class="history-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-lang="loyalty.history">Points History</span>
+                <h2>Your Activity</h2>
+            </div>
+            <div class="history-table-wrapper">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th data-lang="loyalty.date">Date</th>
+                            <th data-lang="loyalty.activity">Activity</th>
+                            <th data-lang="loyalty.points">Points</th>
+                            <th data-lang="loyalty.status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTable">
+                        <tr>
+                            <td>Jun 8, 2026</td>
+                            <td><i class="fas fa-shopping-bag"></i> Order #UM-78432</td>
+                            <td class="points-positive">+480</td>
+                            <td><span class="status-badge earned">Earned</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jun 5, 2026</td>
+                            <td><i class="fas fa-star"></i> Product Review - Avocado</td>
+                            <td class="points-positive">+50</td>
+                            <td><span class="status-badge earned">Earned</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jun 3, 2026</td>
+                            <td><i class="fas fa-ticket-alt"></i> Redeemed - ₹50 Off</td>
+                            <td class="points-negative">-100</td>
+                            <td><span class="status-badge redeemed">Redeemed</span></td>
+                        </tr>
+                        <tr>
+                            <td>May 28, 2026</td>
+                            <td><i class="fas fa-user-plus"></i> Referral - Rahul K.</td>
+                            <td class="points-positive">+200</td>
+                            <td><span class="status-badge earned">Earned</span></td>
+                        </tr>
+                        <tr>
+                            <td>May 25, 2026</td>
+                            <td><i class="fas fa-shopping-bag"></i> Order #UM-78415</td>
+                            <td class="points-positive">+320</td>
+                            <td><span class="status-badge earned">Earned</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/loyalty.js"></script>
+</body>
+</html>
