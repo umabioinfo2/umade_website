@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Umade</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<base target="_blank">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <!-- Left Side - Branding -->
+        <div class="auth-branding">
+            <div class="auth-brand-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Umade</span>
+                </a>
+                <h2>Welcome to Healthy Living</h2>
+                <p>Join thousands of customers enjoying fresh, organic groceries delivered to their doorstep.</p>
+                <div class="auth-features">
+                    <div class="auth-feature">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                    <div class="auth-feature">
+                        <i class="fas fa-leaf"></i>
+                        <span>100% Organic</span>
+                    </div>
+                    <div class="auth-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-decoration">
+                <div class="floating-emoji">🥑</div>
+                <div class="floating-emoji">🥬</div>
+                <div class="floating-emoji">🍎</div>
+                <div class="floating-emoji">🥕</div>
+                <div class="floating-emoji">🍞</div>
+            </div>
+        </div>
+
+        <!-- Right Side - Forms -->
+        <div class="auth-forms">
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <div class="form-header">
+                    <h3 data-lang="login.sign_in">Sign In</h3>
+                    <p data-lang="login.welcome_back">Welcome back! Please enter your details.</p>
+                </div>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label data-lang="login.email">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Enter your email" data-lang="login.email" required id="loginEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="login.password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Enter your password" data-lang="login.password" required id="loginPassword">
+                            <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox"> <span data-lang="login.remember">Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link" data-lang="login.forgot">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn-auth">
+                        <span class="btn-text" data-lang="login.sign_in">Sign In</span>
+                        <span class="btn-loading" style="display:none;">
+                            <i class="fas fa-spinner fa-spin"></i> Signing in...
+                        </span>
+                    </button>
+                </form>
+                <div class="social-login">
+                    <div class="divider">
+                        <span data-lang="login.or_continue">Or continue with</span>
+                    </div>
+                    <div class="social-buttons">
+                        <button class="social-btn google" onclick="socialLogin('google')">
+                            <i class="fab fa-google"></i>
+                            <span data-lang="login.google">Google</span>
+                        </button>
+                        <button class="social-btn apple" onclick="socialLogin('apple')">
+                            <i class="fab fa-apple"></i>
+                            <span data-lang="login.apple">Apple</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <p><span data-lang="login.no_account">Don't have an account?</span> <a href="#" onclick="switchForm('register')" data-lang="login.sign_up">Sign up</a></p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form" id="registerForm">
+                <div class="form-header">
+                    <h3 data-lang="login.sign_up">Create Account</h3>
+                    <p>Start your healthy journey today!</p>
+                </div>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-lang="login.first_name">First Name</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" placeholder="First name" required id="regFirstName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-lang="login.last_name">Last Name</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" placeholder="Last name" required id="regLastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="login.email">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Enter your email" data-lang="login.email" required id="regEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="login.phone">Phone Number</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" placeholder="+91 917200558060 / +91 9994014301" id="regPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="login.password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Create password" required id="regPassword" oninput="checkPasswordStrength()">
+                            <button type="button" class="toggle-password" onclick="togglePassword('regPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar"></div>
+                            <span class="strength-text">Password strength</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="login.confirm_password">Confirm Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Confirm password" required id="regConfirmPassword">
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required> <span data-lang="login.agree">I agree to the Terms and Privacy Policy</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-auth">
+                        <span class="btn-text" data-lang="login.create_account">Create Account</span>
+                        <span class="btn-loading" style="display:none;">
+                            <i class="fas fa-spinner fa-spin"></i> Creating account...
+                        </span>
+                    </button>
+                </form>
+                <div class="form-footer">
+                    <p><span data-lang="login.have_account">Already have an account?</span> <a href="#" onclick="switchForm('login')" data-lang="login.sign_in">Sign in</a></p>
+                </div>
+            </div>
+
+            <!-- Forgot Password Form -->
+            <div class="auth-form" id="forgotForm">
+                <div class="form-header">
+                    <h3 data-lang="login.reset">Reset Password</h3>
+                    <p data-lang="login.reset_desc">Enter your email and we'll send you a reset link.</p>
+                </div>
+                <form onsubmit="handleForgot(event)">
+                    <div class="form-group">
+                        <label data-lang="login.email">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Enter your email" data-lang="login.email" required id="forgotEmail">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-auth">
+                        <span class="btn-text" data-lang="login.send_link">Send Reset Link</span>
+                        <span class="btn-loading" style="display:none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
+                </form>
+                <div class="form-footer">
+                    <p><span data-lang="login.have_account">Remember your password?</span> <a href="#" onclick="switchForm('login')" data-lang="login.sign_in">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="../js/lang.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
