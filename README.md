@@ -125,17 +125,7 @@ umade_website/
 | **Mumbai** | 400001, 400050 | Central | ✅ 45-60 min | FREE |
 | **Delhi** | 110001, 110048 | Central | ✅ 45-60 min | FREE |
 
----
-| Item              | Details                                                              |
-| ----------------- | -------------------------------------------------------------------- |
-| **Phone**         | +91 98765 43210                                                      |
-| **Email**         | hello@umade.com                                                    |
-| **Address**       | 86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016 |
-| **Working Hours** | Mon - Sun: 7:00 AM - 10:00 PM                                        |
 
-
-
-```
 Create an organic millets delivery website called "Umade" for the Indian market with:
 
 FOCUS ON MILLETS:
@@ -216,6 +206,13 @@ const deliveryZones = {
     'your-pincode': { zone: 'Your Zone', express: true, time: '30-45 min', fee: 0 }
 };
 ```
+| Item              | Details                                                              |
+| ----------------- | -------------------------------------------------------------------- |
+| **Phone**         | +91 98765 43210                                                      |
+| **Email**         | hello@umade.com                                                    |
+| **Address**       | 86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016 |
+| **Working Hours** | Mon - Sun: 7:00 AM - 10:00 PM                                        |
+
 
 ---
 
