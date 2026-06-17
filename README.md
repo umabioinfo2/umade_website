@@ -208,7 +208,7 @@ const deliveryZones = {
 ```
 | Item              | Details                                                              |
 | ----------------- | -------------------------------------------------------------------- |
-| **Phone**         | +91 98765 43210                                                      |
+| **Phone**         | +91 7200558060/ 9994014301                                                      |
 | **Email**         | hello@umade.com                                                    |
 | **Address**       | 86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016 |
 | **Working Hours** | Mon - Sun: 7:00 AM - 10:00 PM                                        |
