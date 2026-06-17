@@ -2144,7 +2144,58 @@ body {
 .fssai-badge i {
     font-size: 14px;
 }
+/* Contact Info Section */
+.contact-info-section {
+    background: linear-gradient(135deg, #f8faf5 0%, #e8f5e9 100%);
+    padding: 80px 0;
+}
 
+.contact-info-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.contact-info-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-info-item i {
+    font-size: 1.5rem;
+    color: #4a7c59;
+    background: #e8f5e9;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.contact-info-text h4 {
+    color: #2d5a27;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.contact-info-text p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
 
 /* ===== Language Toggle ===== */
 .language-toggle {
