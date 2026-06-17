@@ -103,18 +103,18 @@ const translations = {
       "subscribe": "Subscribe"
     },
     "footer": {
-      "description": "Bringing the freshest organic produce from local farms to your table. Healthy eating made easy and convenient.",
-      "quick_links": "Quick Access",
-      "categories": "Categories",
-      "contact_us": "Contact Us",
-      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
-      "phone": "+91 7200558060 / +91 9994014301",
-      "email": "hello@umade.com",
-      "hours": "Mon - Sun: 7:00 AM - 10:00 PM",
-      "copyright": "All rights reserved. Made with love for healthy living.",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
-      "cookies": "Cookie Policy"
+  "description": "Bringing the freshest organic produce from local farms to your table. Healthy eating made easy and convenient.",
+  "quick_links": "Quick Access",
+  "categories": "Categories",
+  "contact_us": "Contact Us",
+  "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+  "phone": "+91 7200558060 / +91 9994014301",
+  "email": "hello@umade.com",
+  "hours": "Mon - Sun: 7:00 AM - 10:00 PM",
+  "copyright": "All rights reserved. Made with love for healthy living.",
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Service",
+  "cookies": "Cookie Policy"
     },
     "cart": {
       "title": "Your Cart",
@@ -375,19 +375,19 @@ const translations = {
       "placeholder": "உங்கள் மின்னஞ்சல் முகவரியை உள்ளிடவும்",
       "subscribe": "குழுசேர்"
     },
-    "footer": {
-      "description": "உள்ளூர் பண்ணைகளிலிருந்து உங்கள் மேசைக்கு புதிய கரிம உற்பத்திப்பொருட்களைக் கொண்டு வருதல். ஆரோக்கியமான சாப்பாடு எளிதாகவும் வசதியாகவும் மாற்றப்படுகிறது.",
-      "quick_links": "விரைவு இணைப்புகள்",
-      "categories": "வகைகள்",
-      "contact_us": "எங்களை தொடர்பு கொள்ள",
-      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
-      "phone": "+91 7200558060 / +91 9994014301",
-      "email": "hello@umade.com",
-      "hours": "திங்கள் - ஞாயிறு: காலை 7:00 - இரவு 10:00",
-      "copyright": "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. ஆரோக்கியமான வாழ்க்கைக்காக அன்புடன் உருவாக்கப்பட்டது.",
-      "privacy": "தனியுரிமைக் கொள்கை",
-      "terms": "சேவை விதிமுறைகள்",
-      "cookies": "குக்கீ கொள்கை"
+   "footer": {
+  "description": "உள்ளூர் பண்ணைகளிலிருந்து உங்கள் மேசைக்கு புதிய கரிம உற்பத்திப்பொருட்களைக் கொண்டு வருதல். ஆரோக்கியமான சாப்பாடு எளிதாகவும் வசதியாகவும் மாற்றப்படுகிறது.",
+  "quick_links": "விரைவு இணைப்புகள்",
+  "categories": "வகைகள்",
+  "contact_us": "எங்களை தொடர்பு கொள்ள",
+  "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+  "phone": "+91 7200558060 / +91 9994014301",
+  "email": "hello@umade.com",
+  "hours": "திங்கள் - ஞாயிறு: காலை 7:00 - இரவு 10:00",
+  "copyright": "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. ஆரோக்கியமான வாழ்க்கைக்காக அன்புடன் உருவாக்கப்பட்டது.",
+  "privacy": "தனியுரிமைக் கொள்கை",
+  "terms": "சேவை விதிமுறைகள்",
+  "cookies": "குக்கீ கொள்கை"
     },
     "cart": {
       "title": "உங்கள் வண்டி",
@@ -649,19 +649,20 @@ const translations = {
       "subscribe": "सब्सक्राइब"
     },
     "footer": {
-      "description": "स्थानीय खेतों से आपकी मेज तक ताजे जैविक उत्पाद लाना। स्वस्थ खाना आसान और सुविधाजनक बना दिया गया है।",
-      "quick_links": "त्वरित पहुंच",
-      "categories": "श्रेणियाँ",
-      "contact_us": "हमसे संपर्क करें",
-      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
-      "phone": "+91 7200558060 / +91 9994014301",
-      "email": "hello@umade.com",
-      "hours": "सोम - रवि: सुबह 7:00 - रात 10:00",
-      "copyright": "सर्वाधिकार सुरक्षित। स्वस्थ जीवन के लिए प्यार से बनाया गया।",
-      "privacy": "गोपनीयता नीति",
-      "terms": "सेवा की शर्तें",
-      "cookies": "कुकी नीति"
-    },
+  "description": "स्थानीय खेतों से आपकी मेज तक ताजे जैविक उत्पाद लाना। स्वस्थ खाना आसान और सुविधाजनक बना दिया गया है।",
+  "quick_links": "त्वरित पहुंच",
+  "categories": "श्रेणियाँ",
+  "contact_us": "हमसे संपर्क करें",
+  "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+  "phone": "+91 7200558060 / +91 9994014301",
+  "email": "hello@umade.com",
+  "hours": "सोम - रवि: सुबह 7:00 - रात 10:00",
+  "copyright": "सर्वाधिकार सुरक्षित। स्वस्थ जीवन के लिए प्यार से बनाया गया।",
+  "privacy": "गोपनीयता नीति",
+  "terms": "सेवा की शर्तें",
+  "cookies": "कुकी नीति"
+}
+
     "cart": {
       "title": "आपकी कार्ट",
       "empty": "आपकी कार्ट खाली है",
