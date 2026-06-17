@@ -1,3 +1,5 @@
 git add .github/
 git commit -m "Configure Firebase Hosting CI/CD via GitHub Actions"
 git push
+to trigger your automated CI/CD workflow and update your live site.
+git push
