@@ -107,8 +107,8 @@ const translations = {
       "quick_links": "Quick Access",
       "categories": "Categories",
       "contact_us": "Contact Us",
-      "address": "42, Koramangala 5th Block, Bengaluru, Karnataka 560095",
-      "phone": "+91 98765 43210",
+      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+      "phone": "+91 7200558060 / +91 9994014301",
       "email": "hello@umade.com",
       "hours": "Mon - Sun: 7:00 AM - 10:00 PM",
       "copyright": "All rights reserved. Made with love for healthy living.",
@@ -380,8 +380,8 @@ const translations = {
       "quick_links": "விரைவு இணைப்புகள்",
       "categories": "வகைகள்",
       "contact_us": "எங்களை தொடர்பு கொள்ள",
-      "address": "42, கோரமங்கலா 5வது தெரு, பெங்களூரு, கர்நாடகா 560095",
-      "phone": "+91 98765 43210",
+      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+      "phone": "+91 7200558060 / +91 9994014301",
       "email": "hello@umade.com",
       "hours": "திங்கள் - ஞாயிறு: காலை 7:00 - இரவு 10:00",
       "copyright": "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. ஆரோக்கியமான வாழ்க்கைக்காக அன்புடன் உருவாக்கப்பட்டது.",
@@ -653,8 +653,8 @@ const translations = {
       "quick_links": "त्वरित पहुंच",
       "categories": "श्रेणियाँ",
       "contact_us": "हमसे संपर्क करें",
-      "address": "42, कोरमंगला 5वाँ ब्लॉक, बेंगलुरु, कर्नाटक 560095",
-      "phone": "+91 98765 43210",
+      "address": "86/12, Seetharaman Street, Thangavel Nagar, Alagapuram, Salem-636016",
+      "phone": "+91 7200558060 / +91 9994014301",
       "email": "hello@umade.com",
       "hours": "सोम - रवि: सुबह 7:00 - रात 10:00",
       "copyright": "सर्वाधिकार सुरक्षित। स्वस्थ जीवन के लिए प्यार से बनाया गया।",
@@ -909,4 +909,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLanguageToggle();
     updateHTMLLang();
 });
-
