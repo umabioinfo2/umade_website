@@ -1,5 +1,0 @@
- name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          # Removed cache: 'npm' to prevent errors if package-lock.json is missing
