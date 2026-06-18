@@ -35,8 +35,7 @@ jobs:
         with:
           source: .
           destination: ./_site
-        # Remove this step if you're not using Jekyll
-
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
