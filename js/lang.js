@@ -179,7 +179,7 @@ const translations = {
         'referral.successful': 'Successful',
         'referral.pending': 'Pending',
         'referral.earnings': 'Total Earnings',
-        'referral.friends_title': 'Friends You've Referred',
+        'referral.friends_title': 'Friends You\'ve Referred',
         'referral.friend_name': 'Friend',
         'referral.order_value': 'Order Value',
         'referral.your_reward': 'Your Reward',
