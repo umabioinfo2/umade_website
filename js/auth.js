@@ -1,28 +1,65 @@
-// ===== Authentication JavaScript =====
+// ============================================
+// UMADE AUTH (LOGIN / SIGNUP) JavaScript
+// ============================================
 
-// ===== DOM Elements =====
-const toast = document.getElementById('toast');
-const toastMessage = document.getElementById('toastMessage');
-
-// ===== Form Switching =====
 function switchForm(formType) {
-    document.querySelectorAll('.auth-form').forEach(form => {
-        form.classList.remove('active');
-    });
-
-    if (formType === 'login') {
-        document.getElementById('loginForm').classList.add('active');
-    } else if (formType === 'register') {
-        document.getElementById('registerForm').classList.add('active');
-    } else if (formType === 'forgot') {
-        document.getElementById('forgotForm').classList.add('active');
-    }
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    const target = document.getElementById(formType + 'Form');
+    if (target) target.classList.add('active');
 }
 
-// ===== Password Toggle =====
+function handleLogin(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-auth');
+    const text = btn.querySelector('.btn-text');
+    const loading = btn.querySelector('.btn-loading');
+
+    if (text) text.style.display = 'none';
+    if (loading) loading.style.display = 'flex';
+
+    setTimeout(() => {
+        showToast('Login successful! Welcome back to Umade. 🌿');
+        window.location.href = '../index.html';
+    }, 1500);
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-auth');
+    const text = btn.querySelector('.btn-text');
+    const loading = btn.querySelector('.btn-loading');
+
+    if (text) text.style.display = 'none';
+    if (loading) loading.style.display = 'flex';
+
+    setTimeout(() => {
+        showToast('Account created successfully! Welcome to Umade. 🌿');
+        switchForm('login');
+        if (text) text.style.display = 'inline';
+        if (loading) loading.style.display = 'none';
+    }, 1500);
+}
+
+function handleForgot(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-auth');
+    const text = btn.querySelector('.btn-text');
+    const loading = btn.querySelector('.btn-loading');
+
+    if (text) text.style.display = 'none';
+    if (loading) loading.style.display = 'flex';
+
+    setTimeout(() => {
+        showToast('Password reset link sent to your email!');
+        if (text) text.style.display = 'inline';
+        if (loading) loading.style.display = 'none';
+    }, 1500);
+}
+
 function togglePassword(inputId, btn) {
     const input = document.getElementById(inputId);
     const icon = btn.querySelector('i');
+    if (!input || !icon) return;
 
     if (input.type === 'password') {
         input.type = 'text';
@@ -35,177 +72,57 @@ function togglePassword(inputId, btn) {
     }
 }
 
-// ===== Password Strength Checker =====
 function checkPasswordStrength() {
-    const password = document.getElementById('regPassword').value;
-    const strengthBar = document.querySelector('.strength-bar');
-    const strengthText = document.querySelector('.strength-text');
+    const password = document.getElementById('regPassword')?.value || '';
+    const strengthBar = document.getElementById('passwordStrength');
+    if (!strengthBar) return;
+
+    const bar = strengthBar.querySelector('.strength-bar');
+    const text = strengthBar.querySelector('.strength-text');
+    if (!bar || !text) return;
 
     let strength = 0;
-    if (password.length >= 8) strength++;
-    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
-    if (password.match(/\d/)) strength++;
-    if (password.match(/[^a-zA-Z\d]/)) strength++;
+    if (password.length >= 6) strength++;
+    if (password.length >= 10) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
 
-    strengthBar.className = 'strength-bar';
-
-    if (password.length === 0) {
-        strengthText.textContent = 'Password strength';
-    } else if (strength <= 1) {
-        strengthBar.classList.add('weak');
-        strengthText.textContent = 'Weak - Add more characters';
-        strengthText.style.color = '#e74c3c';
-    } else if (strength === 2) {
-        strengthBar.classList.add('medium');
-        strengthText.textContent = 'Medium - Add special characters';
-        strengthText.style.color = '#FF8F00';
+    bar.className = 'strength-bar';
+    if (strength <= 2) {
+        bar.classList.add('weak');
+        text.textContent = 'Weak password';
+    } else if (strength <= 3) {
+        bar.classList.add('medium');
+        text.textContent = 'Medium strength';
     } else {
-        strengthBar.classList.add('strong');
-        strengthText.textContent = 'Strong password!';
-        strengthText.style.color = 'var(--primary)';
+        bar.classList.add('strong');
+        text.textContent = 'Strong password';
     }
 }
 
-// ===== Login Handler =====
-function handleLogin(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    const btn = e.target.querySelector('.btn-auth');
-    const btnText = btn.querySelector('.btn-text');
-    const btnLoading = btn.querySelector('.btn-loading');
-
-    // Show loading
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'flex';
-    btn.disabled = true;
-
-    // Simulate API call
-    setTimeout(() => {
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-        btn.disabled = false;
-
-        showToast('Welcome back! Swagat hai! 🙏');
-
-        // Redirect to home after delay
-        setTimeout(() => {
-            window.location.href = '../index.html';
-        }, 1500);
-    }, 2000);
-}
-
-// ===== Register Handler =====
-function handleRegister(e) {
-    e.preventDefault();
-
-    const firstName = document.getElementById('regFirstName').value;
-    const lastName = document.getElementById('regLastName').value;
-    const email = document.getElementById('regEmail').value;
-    const password = document.getElementById('regPassword').value;
-    const confirmPassword = document.getElementById('regConfirmPassword').value;
-    const btn = e.target.querySelector('.btn-auth');
-    const btnText = btn.querySelector('.btn-text');
-    const btnLoading = btn.querySelector('.btn-loading');
-
-    // Validation
-    if (password !== confirmPassword) {
-        showToast('Passwords do not match!');
-        return;
-    }
-
-    if (password.length < 8) {
-        showToast('Password must be at least 8 characters');
-        return;
-    }
-
-    // Show loading
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'flex';
-    btn.disabled = true;
-
-    // Simulate API call
-    setTimeout(() => {
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-        btn.disabled = false;
-
-        showToast(`Welcome ${firstName}! Account created successfully! Aapka swagat hai! 🎉`);
-
-        // Switch to login after delay
-        setTimeout(() => {
-            switchForm('login');
-        }, 2000);
-    }, 2500);
-}
-
-// ===== Forgot Password Handler =====
-function handleForgot(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('forgotEmail').value;
-    const btn = e.target.querySelector('.btn-auth');
-    const btnText = btn.querySelector('.btn-text');
-    const btnLoading = btn.querySelector('.btn-loading');
-
-    // Show loading
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'flex';
-    btn.disabled = true;
-
-    // Simulate API call
-    setTimeout(() => {
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-        btn.disabled = false;
-
-        showToast('Reset link sent! Kripaya apna email check karein.');
-
-        // Switch to login after delay
-        setTimeout(() => {
-            switchForm('login');
-        }, 2000);
-    }, 2000);
-}
-
-// ===== Social Login =====
 function socialLogin(provider) {
-    showToast(`Connecting to ${provider}...`);
-
+    showToast(`Connecting to ${provider.charAt(0).toUpperCase() + provider.slice(1)}...`);
     setTimeout(() => {
-        showToast(`Successfully connected with ${provider}!`);
-        setTimeout(() => {
-            window.location.href = '../index.html';
-        }, 1500);
+        showToast(`Logged in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}!`);
+        window.location.href = '../index.html';
     }, 2000);
 }
 
-// ===== Toast =====
 function showToast(message) {
-    toastMessage.textContent = message;
+    const toast = document.getElementById('toast');
+    const msg = document.getElementById('toastMessage');
+    if (!toast || !msg) return;
+
+    msg.textContent = message;
     toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
+    setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ===== Initialize =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Check URL params for form type
-    const urlParams = new URLSearchParams(window.location.search);
-    const form = urlParams.get('form');
-    if (form) {
-        switchForm(form);
-    }
-});
-
-// ===== Keyboard =====
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const activeForm = document.querySelector('.auth-form.active form');
-        if (activeForm) {
-            // Trigger form submit
-        }
+// Check URL for form parameter on load
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('form') === 'register') {
+        switchForm('register');
     }
 });
