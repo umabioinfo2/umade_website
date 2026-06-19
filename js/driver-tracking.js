@@ -35,12 +35,20 @@ function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
 
-    messages.innerHTML += `
-        <div class="chat-message user-msg">
-            <p>${text}</p>
-            <span class="msg-time">Just now</span>
-        </div>
-    `;
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-message user-msg';
+
+    const userText = document.createElement('p');
+    userText.textContent = text;
+
+    const userTime = document.createElement('span');
+    userTime.className = 'msg-time';
+    userTime.textContent = 'Just now';
+
+    userMsg.appendChild(userText);
+    userMsg.appendChild(userTime);
+    messages.appendChild(userMsg);
+
     input.value = '';
     messages.scrollTop = messages.scrollHeight;
 
