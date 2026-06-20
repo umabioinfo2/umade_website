@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out - Umade Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .logout-container {
+            text-align: center;
+            background: #fff;
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(45, 122, 62, 0.15);
+            max-width: 450px;
+            width: 100%;
+        }
+        .logout-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease;
+        }
+        .logout-icon i {
+            font-size: 48px;
+            color: #2D7A3E;
+        }
+        .logout-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+        .logout-container p {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .logout-container .user-name {
+            font-weight: 600;
+            color: #2D7A3E;
+        }
+        .logout-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: #f0fdf4;
+            border-radius: 30px;
+            color: #166534;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-relogin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #2D7A3E 0%, #1B5E20 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        .btn-relogin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 122, 62, 0.3);
+        }
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 24px;
+            background: #fff;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+        .btn-home:hover {
+            border-color: #2D7A3E;
+            color: #2D7A3E;
+        }
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            color: #64748b;
+            font-size: 13px;
+        }
+        .security-note i {
+            color: #22c55e;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .logout-container > * {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .logout-container > *:nth-child(1) { animation-delay: 0.1s; }
+        .logout-container > *:nth-child(2) { animation-delay: 0.2s; }
+        .logout-container > *:nth-child(3) { animation-delay: 0.3s; }
+        .logout-container > *:nth-child(4) { animation-delay: 0.4s; }
+        .logout-container > *:nth-child(5) { animation-delay: 0.5s; }
+        .logout-container > *:nth-child(6) { animation-delay: 0.6s; }
+        .logout-container > *:nth-child(7) { animation-delay: 0.7s; }
+        @media (max-width: 480px) {
+            .logout-container {
+                padding: 40px 30px;
+            }
+            .logout-container h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="logout-container">
+        <div class="logout-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Successfully Logged Out</h1>
+        <p>You have been securely logged out of the admin dashboard.</p>
+        <p>Goodbye, <span class="user-name" id="logoutUserName">Admin</span>!</p>
+        <div class="logout-time">
+            <i class="fas fa-clock"></i>
+            <span id="logoutTime">Session ended at --:--</span>
+        </div>
+        <a href="admin-login.html" class="btn-relogin">
+            <i class="fas fa-sign-in-alt"></i>
+            Sign In Again
+        </a>
+        <a href="../index.html" class="btn-home">
+            <i class="fas fa-home"></i>
+            Go to Homepage
+        </a>
+        <div class="security-note">
+            <i class="fas fa-shield-alt"></i>
+            <span>Your session has been securely cleared</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear all admin session data
+            var userData = localStorage.getItem('umade_admin_user');
+            var userName = 'Admin';
+
+            if (userData) {
+                try {
+                    var user = JSON.parse(userData);
+                    userName = user.name || 'Admin';
+                } catch(e) {}
+            }
+
+            document.getElementById('logoutUserName').textContent = userName;
+
+            var now = new Date();
+            var timeString = now.toLocaleTimeString('en-IN', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+            });
+            document.getElementById('logoutTime').textContent = 'Session ended at ' + timeString;
+
+            // Clear all session data
+            localStorage.removeItem('umade_admin_logged_in');
+            localStorage.removeItem('umade_admin_session_expiry');
+            localStorage.removeItem('umade_admin_user');
+        });
+    </script>
+</body>
+</html>
